@@ -1,7 +1,6 @@
 package com.theangel.netty.nio.channel;
 
 import java.io.*;
-import java.net.URL;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
@@ -13,21 +12,28 @@ import java.nio.channels.FileChannel;
  */
 public class CopyFile {
     public static void main(String[] args) throws IOException {
-        FileInputStream fileInputStream = new FileInputStream(SimpleWriteAndRed.str);
-        FileChannel fileChannel = fileInputStream.getChannel();
+        //创建一个输入流
+        FileInputStream fileInputStream = new FileInputStream(SimpleWriteAndRed.fileName);
+        //创建输入流的通道
+        FileChannel inputStreamChannel = fileInputStream.getChannel();
+        //创建一个buffer
         ByteBuffer byteBuffer = ByteBuffer.allocateDirect(1024);
+        //路径
         String s = CopyFile.class.getResource("/") + "1.txt";
 //        D:\project\netty\file:\D:\project\netty\target\classes\com\theangel\netty\nio\channel\1.txt
         System.out.println(s);
         File file = new File(s);
+        //创建文件
         if (!file.isFile()) {
             file.mkdirs();
             boolean newFile = file.createNewFile();
             System.out.println(newFile);
         }
-
+        //创建一个输出流
         FileOutputStream fileOutputStream = new FileOutputStream(file);
-        FileChannel channel = fileOutputStream.getChannel();
+        //输出流通道
+        FileChannel outputStreamChannel = fileOutputStream.getChannel();
+        //循环读取
         while (true) {
             /**
              * 清空buffer
@@ -37,13 +43,16 @@ public class CopyFile {
              *         return this;
              */
             byteBuffer.clear();
-            int read = fileChannel.read(byteBuffer);
+            //将input数据读取到buffer中
+            int read = inputStreamChannel.read(byteBuffer);
             if (-1 == read) {
                 //读取完毕了
                 break;
             }
+            //切换读
             byteBuffer.flip();
-            channel.write(byteBuffer);
+            //讲buffer数据 写入输出流中
+            outputStreamChannel.write(byteBuffer);
         }
         fileInputStream.close();
         fileOutputStream.close();
