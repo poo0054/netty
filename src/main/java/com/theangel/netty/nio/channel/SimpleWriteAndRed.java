@@ -1,13 +1,16 @@
 package com.theangel.netty.nio.channel;
 
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
 /**
  * @author admin
- * Date: 2022/3/17 10:57
+ * @create: 2022/3/17 10:57
  */
 public class SimpleWriteAndRed {
     static String fileName = "D:/file1.txt";
