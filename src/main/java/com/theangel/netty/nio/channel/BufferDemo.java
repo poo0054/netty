@@ -1,7 +1,5 @@
 package com.theangel.netty.nio.channel;
 
-import org.apache.commons.lang3.StringUtils;
-
 import java.nio.IntBuffer;
 
 /**

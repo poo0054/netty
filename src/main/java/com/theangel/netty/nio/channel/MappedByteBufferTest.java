@@ -33,9 +33,4 @@ public class MappedByteBufferTest {
         rw.close();
     }
 
-    @Test
-    public void test1() {
-
-    }
-
 }
