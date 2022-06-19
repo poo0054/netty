@@ -1,4 +1,4 @@
-package com.theangel.netty.nio.groupChat;
+package com.theangel.nio.groupChat;
 
 import lombok.Data;
 

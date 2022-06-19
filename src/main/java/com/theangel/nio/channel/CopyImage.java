@@ -1,4 +1,4 @@
-package com.theangel.netty.nio.channel;
+package com.theangel.nio.channel;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
