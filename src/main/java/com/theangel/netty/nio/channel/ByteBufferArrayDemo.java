@@ -18,8 +18,8 @@ import java.util.concurrent.Future;
  * buffer数组操作
  * 该方法 只是用来测试buffer数组的操作 未完善
  *
- * @author: poo0054
- * @create: 2022-06-07 20:32
+ * @author poo0054
+ * @since 2022-06-07 20:32
  */
 public class ByteBufferArrayDemo {
     @Test

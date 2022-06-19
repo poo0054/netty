@@ -3,9 +3,9 @@ package com.theangel.netty.nio.channel;
 import java.nio.ByteBuffer;
 
 /**
- * @author: theangel
+ * @author: poo0054
  * @create: 2022-03-20 19:49
- **/
+ */
 public class ByteBufferGetAndPut {
     public static void main(String[] args) {
         ByteBuffer buffer = ByteBuffer.allocate(1024);

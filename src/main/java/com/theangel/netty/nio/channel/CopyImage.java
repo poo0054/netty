@@ -7,7 +7,12 @@ import java.nio.channels.FileChannel;
 
 /**
  * 快速拷贝图片
+ *
+ * @author poo00
+ * @since 2022/6/19
  */
+
+
 public class CopyImage {
     public static void main(String[] args) throws IOException {
 

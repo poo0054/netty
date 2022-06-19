@@ -10,7 +10,7 @@ import java.nio.channels.FileChannel;
 
 /**
  * @author admin
- * @create: 2022/3/17 10:57
+ * @since 2022/3/17 10:57
  */
 public class SimpleWriteAndRed {
     static String fileName = "D:/file1.txt";

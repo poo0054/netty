@@ -5,8 +5,8 @@ import java.nio.IntBuffer;
 /**
  * Buffer的使用
  *
- * @author admin
- * Date: 2022/3/16 15:42
+ * @author poo0054
+ * @since 2022/3/16 15:42
  */
 public class BufferDemo {
     public static void main(String[] args) {

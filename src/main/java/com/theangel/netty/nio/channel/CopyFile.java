@@ -1,14 +1,17 @@
 package com.theangel.netty.nio.channel;
 
-import java.io.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 
 /**
  * 拷贝一个文件
  *
- * @author admin
- * Date: 2022/3/18 15:50
+ * @author poo0054
+ * @since : 2022/3/18 15:50
  */
 public class CopyFile {
     public static void main(String[] args) throws IOException {

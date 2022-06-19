@@ -10,9 +10,9 @@ import java.nio.channels.FileChannel;
 /**
  * MappedByteBuffer文件直接可以在内存中修改  不需要再进行拷贝
  *
- * @author: theangel
- * @create: 2022-04-03 12:47
- **/
+ * @author poo0054
+ * @since 2022-04-03 12:47
+ */
 public class MappedByteBufferTest {
     @Test
     public void test() throws IOException {

@@ -13,9 +13,9 @@ import java.util.Iterator;
 import java.util.Set;
 
 /**
- * @author: poo0054
- * @create: 2022-06-12 14:49
- **/
+ * @author poo0054
+ * @create 2022-06-12 14:49
+ */
 public class SelectorDemo {
     @Test
     public void readTest() throws Exception {
@@ -66,12 +66,11 @@ public class SelectorDemo {
                             }
                             byteBuffer.clear();
                         } catch (IOException e) {
+                            key.cancel();
                             channel.close();
                             System.out.println("读取io异常:" + e.getMessage());
                         }
                     }
-
-
                 }
                 iterator.remove();
             }
