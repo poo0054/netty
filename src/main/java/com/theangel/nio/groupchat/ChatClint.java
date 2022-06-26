@@ -1,4 +1,4 @@
-package com.theangel.nio.groupChat;
+package com.theangel.nio.groupchat;
 
 import lombok.Getter;
 
