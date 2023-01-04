@@ -22,11 +22,11 @@ public class BufferDemo {
         int capacity = intBuffer.capacity();
         System.out.println("当前容量为:" + capacity);
         //读写切换  读变为取  取变为读
-        /**
-         * limit = position;   把当前缓存区的最大值 设置成当前位置
-         *         position = 0;  当前位置设置成为0
-         *         mark = -1;
-         *         return this;
+        /*
+          limit = position;   把当前缓存区的最大值 设置成当前位置
+                  position = 0;  当前位置设置成为0
+                  mark = -1;
+                  return this;
          */
         intBuffer.flip();
         //是否存在下一个元素
