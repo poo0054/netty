@@ -1,7 +1,5 @@
 package com.theangel.nio.copy;
 
-import org.junit.Test;
-
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -9,6 +7,8 @@ import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;
 import java.nio.channels.ServerSocketChannel;
 import java.nio.channels.SocketChannel;
+
+import org.junit.Test;
 
 /**
  * @author poo0054
@@ -24,10 +24,10 @@ public class NewIoTest {
         try {
             while (socketChannel.read(allocate) > 0) {
                 allocate.flip();
-                String msg = "";
+                StringBuilder msg = new StringBuilder();
                 while (allocate.hasRemaining()) {
                     byte b = allocate.get();
-                    msg += b;
+                    msg.append(b);
                 }
                 allocate.clear();
                 System.out.println("接受到的数据为：" + msg);
