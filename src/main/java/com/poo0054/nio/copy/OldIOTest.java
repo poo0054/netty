@@ -1,6 +1,4 @@
-package com.theangel.nio.copy;
-
-import org.junit.Test;
+package com.poo0054.nio.copy;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -9,6 +7,8 @@ import java.io.OutputStream;
 import java.net.InetSocketAddress;
 import java.net.ServerSocket;
 import java.net.Socket;
+
+import org.junit.Test;
 
 /**
  * @author poo0054

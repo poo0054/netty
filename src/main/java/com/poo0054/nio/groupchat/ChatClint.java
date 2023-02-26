@@ -1,6 +1,4 @@
-package com.theangel.nio.groupchat;
-
-import lombok.Getter;
+package com.poo0054.nio.groupchat;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -11,6 +9,8 @@ import java.nio.channels.SocketChannel;
 import java.nio.charset.StandardCharsets;
 import java.util.Iterator;
 import java.util.Scanner;
+
+import lombok.Getter;
 
 /**
  * 客户端

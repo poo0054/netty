@@ -1,6 +1,4 @@
-package com.theangel.nio.channel;
-
-import org.junit.Test;
+package com.poo0054.nio.channel;
 
 import java.io.IOException;
 import java.net.InetSocketAddress;
@@ -13,6 +11,8 @@ import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 import java.util.concurrent.Future;
+
+import org.junit.Test;
 
 /**
  * buffer数组操作

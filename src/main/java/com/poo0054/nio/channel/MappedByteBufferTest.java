@@ -1,11 +1,11 @@
-package com.theangel.nio.channel;
-
-import org.junit.Test;
+package com.poo0054.nio.channel;
 
 import java.io.IOException;
 import java.io.RandomAccessFile;
 import java.nio.MappedByteBuffer;
 import java.nio.channels.FileChannel;
+
+import org.junit.Test;
 
 /**
  * MappedByteBuffer文件直接可以在内存中修改  不需要再进行拷贝
