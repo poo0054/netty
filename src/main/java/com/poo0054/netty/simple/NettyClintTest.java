@@ -9,13 +9,15 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
 import org.junit.Test;
 
+import java.io.IOException;
+
 /**
  * @author zhangzhi
  * @date 2023/2/26
  */
 public class NettyClintTest {
     @Test
-    public void clintTest() throws InterruptedException {
+    public void clintTest() throws InterruptedException, IOException {
         EventLoopGroup group = new NioEventLoopGroup();
         try {
             // 设置客户端参数
@@ -32,12 +34,13 @@ public class NettyClintTest {
             System.out.println("客户端启动");
 
             // 链接服务端
-            ChannelFuture sync = bootstrap.connect("127.0.0.1", 6668).sync();
+            ChannelFuture sync = bootstrap.connect("127.0.0.1", 6669).sync();
             // 关闭
             sync.channel().closeFuture().sync();
         } finally {
             // 优雅关闭
             group.shutdownGracefully();
         }
+        System.in.read();
     }
 }
