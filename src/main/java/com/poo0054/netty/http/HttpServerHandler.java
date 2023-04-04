@@ -35,7 +35,6 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<HttpObject> {
 
             //回复 http协议
             ByteBuf byteBuf = Unpooled.copiedBuffer("hello,我是服务器", StandardCharsets.UTF_8);
-
             //构造http相应
             FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK, byteBuf);
 

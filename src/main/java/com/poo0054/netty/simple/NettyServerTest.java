@@ -1,7 +1,10 @@
 package com.poo0054.netty.simple;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.*;
+import io.netty.channel.Channel;
+import io.netty.channel.ChannelFuture;
+import io.netty.channel.ChannelInitializer;
+import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
@@ -39,14 +42,6 @@ public class NettyServerTest {
                             Channel channel = socketChannel.pipeline().channel();
                             channels.add(channel);
                             socketChannel.pipeline().addLast(new NettyServerHandler());
-                            socketChannel.pipeline().addLast(new ChannelOutboundHandlerAdapter() {
-                                @Override
-                                public void write(ChannelHandlerContext ctx, Object msg, ChannelPromise promise) throws Exception {
-                                    System.out.println("我是 ChannelOutboundHandlerAdapter 准备发送" + msg.toString());
-                                    super.write(ctx, msg, promise);
-                                }
-                            });
-
                         }
                     });// 给我们workerGroup的eventLoop 对应的管道处理器
 
