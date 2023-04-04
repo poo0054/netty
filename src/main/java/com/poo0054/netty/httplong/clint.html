@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<form>
+    <label for="message"></label><textarea id="message" name="message" style="height: 300px"></textarea>
+    <input onclick="send(document.getElementById('message').value)" type="button" value="发送消息">
+    <label for="textareaId"></label><textarea id="textareaId" style="height: 300px"></textarea>
+    <input onclick="document.getElementById('textareaId').value= ''" type="button" value="清空消息">
+</form>
+</body>
+<script>
+    var ws;
+    //判断是否支持socket
+    if (window.WebSocket) {
+        ws = new WebSocket("ws://localhost:8999/")
+        //相当于收到服务器端回送的消息
+        ws.onmessage = function (ev) {
+            alert("服务器端回送的消息" + ev.data)
+            let elementById = document.getElementById('textareaId');
+            elementById.value = elementById.value + '\n' + ev.data
+        }
+        ws.onopen = function (ev) {
+            let elementById = document.getElementById('textareaId');
+            elementById.value = elementById.value + '\n' + '链接开启'
+            alert("链接开启")
+        }
+        ws.onclose = function (ev) {
+            let elementById = document.getElementById('textareaId');
+            elementById.value = elementById.value + '\n' + '链接关闭'
+            alert("链接关闭")
+        }
+    } else {
+        alert("浏览器不支持websocket")
+    }
+
+    function send(message) {
+        alert("发送消息到服务器" + message)
+        if (ws.readyState === WebSocket.OPEN) {
+            ws.send(message)
+        }
+    }
+</script>
+</html>

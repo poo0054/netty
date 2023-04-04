@@ -39,8 +39,9 @@ public class HttpServerHandler extends SimpleChannelInboundHandler<HttpObject> {
             FullHttpResponse response = new DefaultFullHttpResponse(HttpVersion.HTTP_1_1, HttpResponseStatus.OK, byteBuf);
 
             //构建返回头
-            response.headers().set(HttpHeaderNames.CONTENT_TYPE, "text/plain");
-            response.headers().set(HttpHeaderNames.CONTENT_LENGTH, byteBuf.readableBytes());
+            HttpHeaders headers = response.headers();
+            headers.set(HttpHeaderNames.CONTENT_TYPE, "text/plain");
+            headers.set(HttpHeaderNames.CONTENT_LENGTH, byteBuf.readableBytes());
 
             //发送
             ctx.writeAndFlush(response);

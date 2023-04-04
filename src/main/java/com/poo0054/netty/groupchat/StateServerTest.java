@@ -16,6 +16,8 @@ import org.junit.Test;
 import java.util.concurrent.TimeUnit;
 
 /**
+ * 空闲状态处理器
+ *
  * @author zhangzhi
  * @date 2023/4/4
  */

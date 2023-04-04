@@ -13,6 +13,8 @@ import io.netty.handler.codec.string.StringEncoder;
 import java.util.Scanner;
 
 /**
+ * 群聊客户端
+ *
  * @author zhangzhi
  * @date 2023/4/4
  */

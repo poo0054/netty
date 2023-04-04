@@ -12,6 +12,8 @@ import io.netty.handler.codec.string.StringEncoder;
 import org.junit.Test;
 
 /**
+ * 群聊服务器
+ *
  * @author zhangzhi
  * @date 2023/4/4
  */

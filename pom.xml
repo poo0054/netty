@@ -7,8 +7,13 @@
     <groupId>com.poo0054.netty</groupId>
     <artifactId>netty</artifactId>
     <version>1.0</version>
-
-
+    <properties>
+        <os.detected.name>windows</os.detected.name>
+        <os.detected.classifier>windows-x86_64</os.detected.classifier>
+        <os.detected.arch>x86_64</os.detected.arch>
+        <grpc-java.version>1.30.2</grpc-java.version>
+        <protobuf-java.version>3.16.3</protobuf-java.version>
+    </properties>
     <dependencies>
 
         <dependency>
@@ -32,9 +37,38 @@
         <dependency>
             <groupId>io.netty</groupId>
             <artifactId>netty-all</artifactId>
-            <version>4.1.20.Final</version>
+            <version>4.1.86.Final</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.google.protobuf</groupId>
+            <artifactId>protobuf-java</artifactId>
+            <version>${protobuf-java.version}</version>
+        </dependency>
     </dependencies>
 
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.xolstice.maven.plugins</groupId>
+                <artifactId>protobuf-maven-plugin</artifactId>
+                <version>0.6.1</version>
+                <configuration>
+                    <protocArtifact>com.google.protobuf:protoc:${protobuf-java.version}:exe:${os.detected.classifier}
+                    </protocArtifact>
+                    <pluginId>grpc-java</pluginId>
+                    <pluginArtifact>io.grpc:protoc-gen-grpc-java:${grpc-java.version}:exe:${os.detected.classifier}
+                    </pluginArtifact>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>compile</goal>
+                            <goal>compile-custom</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
