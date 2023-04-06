@@ -1,5 +1,6 @@
-package com.poo0054.netty.codec;
+package com.poo0054.netty.handle;
 
+import com.poo0054.netty.codec.CodecPo;
 import io.netty.buffer.ByteBuf;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
@@ -14,7 +15,7 @@ import java.nio.charset.StandardCharsets;
  * @author zhangzhi
  * @date 2023/2/26
  */
-public class NettyClintHandler extends ChannelInboundHandlerAdapter {
+public class ClintHandler extends ChannelInboundHandlerAdapter {
     /**
      * 通道就绪 触发事件
      */
@@ -23,10 +24,10 @@ public class NettyClintHandler extends ChannelInboundHandlerAdapter {
 
         System.out.println("客户端就绪");
         //发送CodecPo到服务器
-        CodecPo.Study build = CodecPo.Study.newBuilder().setId(1).setEmail(0, "123@outlook.com").setName("张三").build();
+        CodecPo.Study build = CodecPo.Study.newBuilder().setId(1).addEmail("123@outlook.com").setName("张三").build();
         System.out.println("ctx : " + ctx);
-
         ctx.writeAndFlush(build);
+        ctx.writeAndFlush(123456L);
     }
 
     /**
@@ -43,5 +44,6 @@ public class NettyClintHandler extends ChannelInboundHandlerAdapter {
         System.out.println("服务端回复消息为:" + buf.toString(StandardCharsets.UTF_8));
         System.out.println("服务端地址为:" + ctx.channel().remoteAddress());
     }
+
 
 }
