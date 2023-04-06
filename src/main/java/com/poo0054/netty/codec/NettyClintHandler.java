@@ -1,10 +1,8 @@
 package com.poo0054.netty.codec;
 
 import io.netty.buffer.ByteBuf;
-import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.ChannelInboundHandlerAdapter;
-import io.netty.util.CharsetUtil;
 
 import java.nio.charset.StandardCharsets;
 
@@ -22,8 +20,13 @@ public class NettyClintHandler extends ChannelInboundHandlerAdapter {
      */
     @Override
     public void channelActive(ChannelHandlerContext ctx) {
+
+        System.out.println("客户端就绪");
+        //发送CodecPo到服务器
+        CodecPo.Study build = CodecPo.Study.newBuilder().setId(1).setEmail(0, "123@outlook.com").setName("张三").build();
         System.out.println("ctx : " + ctx);
-        ctx.writeAndFlush(Unpooled.copiedBuffer("hello,server ", CharsetUtil.UTF_8));
+
+        ctx.writeAndFlush(build);
     }
 
     /**

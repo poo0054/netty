@@ -1,0 +1,73 @@
+syntax = "proto3";
+option java_string_check_utf8 = true;
+
+//包名
+option java_package = "com.poo0054.netty.codec";
+//生成的外部类名 也是文件名
+option java_outer_classname = "CodecPo";
+//protobuf使用message管理数据
+
+//是否为每个类生成一个文件
+option java_multiple_files = false;
+
+
+message Study {
+  /*
+  singular：格式正确的消息可以有零个或其中一个字段（但是 不超过一个）。
+  使用 proto3 语法时，这是默认字段规则 当未为给定字段指定其他字段规则时
+   */
+  string name = 1;
+  /*
+  optional：与 相同，不同之处在于您可以检查是否 值已显式设置。字段位于两种可能之一中 国家：singular optional
+  字段已设置，并包含显式设置或解析的值 从电线。它将被序列化到电线上。
+  该字段未设置，将返回默认值。不会是 序列化到电线。
+   */
+  optional int32 id = 2;
+  /*
+  repeated：此字段类型可以在 格式正确的消息。将保留重复值的顺序。
+   */
+  repeated string email = 3;
+
+  enum Type {
+    StudyType = 0;
+    WorkerType = 1;
+  }
+
+
+  Type type = 4;
+
+  message PhoneNumber {
+    optional string number = 1 ;
+  }
+
+  repeated PhoneNumber phones = 5;
+
+  //只能下面对象中,只能出现其中一个
+  oneof dataBody{
+    StudyType studyType = 6;
+    WorkerType workerType = 7;
+  }
+
+}
+
+message StudyType {
+  string name = 1 ;
+  string id = 2;
+  string arg = 3;
+}
+message WorkerType {
+  string name = 1;
+  string arg = 2;
+}
+
+enum EnumAllowingAlias {
+  option allow_alias = true;
+  UNKNOWN = 0;
+  STARTED = 1;
+  RUNNING = 1;
+}
+enum EnumNotAllowingAlias {
+  UNKNOWN = 0;
+  STARTED = 1;
+  RUNNING = 1;  // Uncommenting this line will cause a compile error inside Google and a warning message outside.
+}

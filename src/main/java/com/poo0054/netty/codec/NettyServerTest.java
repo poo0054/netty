@@ -1,17 +1,14 @@
 package com.poo0054.netty.codec;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.Channel;
 import io.netty.channel.ChannelFuture;
 import io.netty.channel.ChannelInitializer;
 import io.netty.channel.ChannelOption;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
+import io.netty.handler.codec.protobuf.ProtobufDecoder;
 import org.junit.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * @author zhangzhi
@@ -21,7 +18,6 @@ public class NettyServerTest {
 
     @Test
     public void server() throws InterruptedException {
-        List<Channel> channels = new ArrayList<>();
         // bookGroup 只处理请求 , 真正业务会给workerGroup
         // 默认线程数量为 cpu核数*2
         NioEventLoopGroup bookGroup = new NioEventLoopGroup();
@@ -39,8 +35,7 @@ public class NettyServerTest {
                         @Override
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
                             //每个客户的Channel不同
-                            Channel channel = socketChannel.pipeline().channel();
-                            channels.add(channel);
+                            socketChannel.pipeline().addLast(new ProtobufDecoder(CodecPo.Study.getDefaultInstance()));
                             socketChannel.pipeline().addLast(new NettyServerHandler());
                         }
                     });// 给我们workerGroup的eventLoop 对应的管道处理器

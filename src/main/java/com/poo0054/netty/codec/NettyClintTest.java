@@ -7,6 +7,7 @@ import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioSocketChannel;
+import io.netty.handler.codec.protobuf.ProtobufEncoder;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -27,6 +28,8 @@ public class NettyClintTest {
                     .handler(new ChannelInitializer<SocketChannel>() {
                         @Override
                         protected void initChannel(SocketChannel ch) {
+                            //加入编码器
+                            ch.pipeline().addLast(new ProtobufEncoder());
                             // 加入自己的处理器
                             ch.pipeline().addLast(new NettyClintHandler());
                         }
@@ -41,6 +44,5 @@ public class NettyClintTest {
             // 优雅关闭
             group.shutdownGracefully();
         }
-        System.in.read();
     }
 }
