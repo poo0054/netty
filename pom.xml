@@ -46,6 +46,7 @@
             <artifactId>protobuf-java-util</artifactId>
             <version>${protobuf-java.version}</version>
         </dependency>
+
     </dependencies>
 
     <build>
