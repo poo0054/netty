@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.EqualsAndHashCode;
 
 import java.util.concurrent.Callable;
+import java.util.concurrent.CyclicBarrier;
 
 /**
  * 1.自定义一个handler 需要继承netty 规定好的handlerAdapter
@@ -24,6 +25,7 @@ public class ClintHandler extends ChannelInboundHandlerAdapter implements Callab
     private String result;
 
     private String par;
+    CyclicBarrier cyclicBarrier = new CyclicBarrier(2);
 
     /**
      * 通道就绪 触发事件
@@ -40,10 +42,10 @@ public class ClintHandler extends ChannelInboundHandlerAdapter implements Callab
      * @param msg 消息
      */
     @Override
-    public synchronized void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
+    public void channelRead(ChannelHandlerContext ctx, Object msg) throws Exception {
         result = msg.toString();
         System.out.println("server ctx = " + ctx);
-        notify();
+        cyclicBarrier.await();
     }
 
     /**
@@ -60,10 +62,10 @@ public class ClintHandler extends ChannelInboundHandlerAdapter implements Callab
     }
 
     @Override
-    public synchronized String call() throws Exception {
+    public String call() throws Exception {
         ctx.writeAndFlush(par);
         //等待获取服务器的结果
-        wait();
+        cyclicBarrier.await();
         return result;
     }
 }
