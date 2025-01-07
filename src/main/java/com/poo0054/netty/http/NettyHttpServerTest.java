@@ -19,6 +19,7 @@ public class NettyHttpServerTest {
             ServerBootstrap serverBootstrap = new ServerBootstrap();
             serverBootstrap.group(bossGroup, workGroup)
                     .channel(NioServerSocketChannel.class)
+                    .handler(new HttpServerInitializer())
                     .childHandler(new HttpServerInitializer());
             ChannelFuture channelFuture = serverBootstrap.bind(8898).sync();
 

@@ -1,10 +1,7 @@
 package com.poo0054.netty.rpc.server;
 
 import io.netty.bootstrap.ServerBootstrap;
-import io.netty.channel.Channel;
-import io.netty.channel.ChannelFuture;
-import io.netty.channel.ChannelInitializer;
-import io.netty.channel.ChannelOption;
+import io.netty.channel.*;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.SocketChannel;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
@@ -41,11 +38,12 @@ public class ServerTest {
                         @Override
                         protected void initChannel(SocketChannel socketChannel) throws Exception {
                             //每个客户的Channel不同
-                            Channel channel = socketChannel.pipeline().channel();
+                            ChannelPipeline pipeline = socketChannel.pipeline();
+                            Channel channel = pipeline.channel();
                             channels.add(channel);
-                            socketChannel.pipeline().addLast(new StringEncoder());
-                            socketChannel.pipeline().addLast(new StringDecoder());
-                            socketChannel.pipeline().addLast(new ServerHandler());
+                            pipeline.addLast(new StringEncoder());
+                            pipeline.addLast(new StringDecoder());
+                            pipeline.addLast(new ServerHandler());
                         }
                     });// 给我们workerGroup的eventLoop 对应的管道处理器
 
